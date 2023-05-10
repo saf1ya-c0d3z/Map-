@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+<!------------------------------------------------------------------------------------------------>
+<head>
+  <title></title>
+  <!-- <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1" charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="og:title" content="">
+  <meta name="og:description" content="">
+  <meta name="og:image" content="">
+  <meta name="og:type" content="website"> -->
+<!-- stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.icons-1.4.5.css" />
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IM+Fell+English&display=swap"> 
+<!-- scripts -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="d3-dispatch.v1.min.js"></script>
+  <script src="d3-selection.v1.min.js"></script>
+  <script src="d3-drag.v1.min.js"></script>
+  <script src="astronomy.js"></script>
+  <script src="infrastructure.js"></script>
+  <script src="timewheels.js"></script>
+  <script src="nav_buttons.js"></script>
+  <script src="panel_buttons.js"></script>
+  <script src="tympanum.js"></script>
+  <script src="rete.js"></script>
+  <script src="revolve.js"></script>
+  <script src="stars.js"></script>
+</head>
+<!------------------------------------------------------------------------------------------------>
+
+<!------------------------------------------------------------------------------------------------>
+<body>
+  <div data-role="page" id="page">
+    <div id="wrapper">
+      <div data-role="header" style="border:none;">
+        <div class="ui-grid-a ui-responsive">          
+          <div class="ui-block-a">
+            <svg id="bannertop"  viewBox ="0 0 100 10">
+          </div> <!--/block-a-->         
+          <div class="ui-block-b" style="padding-top: 2px;">
+            <svg id="navbuttons"   viewBox ="0 0 100 10">
+              <g id="navbutton_group">
+                <g id="navbutton1_group"/>
+                <g id="navbutton2_group"/>
+                <g id="navbutton3_group"/>
+                <g id="navbutton4_group"/>
+              </g>
+            </svg>
+          </div> <!--/block-b-->        
+        </div> <!--/grid-a-->
+      </div> <!--/header-->
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Main content -->
+<!------------------------------------------------------------------------------------------------>
+      <div data-role="main" class ="ui-content" style="padding:0;">
+        <div class="ui-grid-a ui-responsive">
+          <div class="ui-block-a" id="astroblock">
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Astrolabe SVG -->
+<!------------------------------------------------------------------------------------------------>
+            <svg id="svg_astrolabe" class="svgx" viewBox="0 0 210 210">
+              <defs>
+                <linearGradient id="brass"/>
+                <radialGradient id="twilight"/>
+                <radialGradient id="starglow"/>
+                <clipPath id="skyClip">
+                  <path id="skyClipPath" d=""/>
+                </clipPath>
+                <clipPath id="CapricornClip">
+                  <circle id = "CapricornClipCircle" cx = "0" cy = "0" r = "0"/>
+                </clipPath>
+              </defs>  
+              <g id="mater_group" fill="none" stroke="none" transform="matrix(1,0,0,-1,105,105)">   
+                <circle id = "mater" cx = "0" cy = "0" r = "0"/>
+                <path id = "limb" d = ""/>
+                <g id="limb_markings_group"/>
+                <circle id = "tropicOfCapricorn" cx = "0" cy = "0" r = "0"/>
+                <path id = "south_out" d = ""/>
+                <path id = "north_out" d = ""/>
+                <path id = "east_out" d = ""/>
+                <path id = "west_out" d = ""/>
+                <path id = "eq_out" d = ""/>
+                <path id = "cancer_out" d = ""/>
+                <path id = "sky" d = "" />
+                <circle id = "halo" cx = "0" cy = "0" r = "0"/>
+                <g id = "skyGroup">
+                  <path id = "east_in" d = ""/>
+                  <path id = "west_in" d = ""/>
+                  <path id = "eq_in1" d = ""/>
+                  <path id = "eq_in2" d = ""/>
+                  <path id = "cancer_in1" d = ""/>
+                  <path id = "cancer_in2" d = ""/>
+                  <g id = "altitudeGroup" /> 
+                  <g id = "azimuthGroup">  
+                    <path id = "south_in" d = ""/>
+                    <path id = "north_in" d = ""/>
+                    <path id = "east_in90" d = ""/>
+                    <path id = "west_in90" d = ""/>
+                    <path id = "eq_in0_1" d = ""/>
+                    <path id = "eq_in0_2" d = ""/>
+                  </g>
+                  <g id = "cusps_above_horizon">  
+                    <path id = "cusp8" d = ""/>
+                    <path id = "cusp9" d = ""/>
+                    <path id = "cusp11" d = ""/>
+                    <path id = "cusp12" d = ""/>
+                    <g id = "uppercusps_textgroup">
+                      <g id = "uppercusps_textgroup_inner">
+                        <text id = "cusp7text" x="0" y="0">7</text>
+                        <text id = "cusp8text" x="0" y="0">8</text>
+                        <text id = "cusp9text" x="0" y="0">9</text>
+                        <text id = "cusp10text" x="0" y="0">10</text>
+                        <text id = "cusp11text" x="0" y="0">11</text>
+                        <text id = "cusp12text" x="0" y="0">12</text>
+                      </g>
+                    </g>
+                  </g>
+                  <g style="clip-path:url(#skyClip);">
+                    <g id="starGroup" stroke="none" transform="rotate(0)"/>
+                  </g>
+                </g> <!--/skyGroup-->
+                <path id = "sky_outline" d = ""/>
+                <g id = "cusps_below_horizon">  
+                  <path id = "cusp2" d = ""/>
+                  <path id = "cusp2a" d = ""/>
+                  <path id = "cusp3" d = ""/>
+                  <path id = "cusp3a" d = ""/>
+                  <path id = "cusp5" d = ""/>
+                  <path id = "cusp5a" d = ""/>
+                  <path id = "cusp6" d = ""/>
+                  <path id = "cusp6a" d = ""/>
+                  <g id = "lowercusps_textgroup">
+                    <text id = "cusp1text" x="0" y="0">1</text>
+                    <text id = "cusp2text" x="0" y="0">2</text>
+                    <text id = "cusp3text" x="0" y="0">3</text>
+                    <text id = "cusp4text" x="0" y="0">4</text>
+                    <text id = "cusp5text" x="0" y="0">5</text>
+                    <text id = "cusp6text" x="0" y="0">6</text>
+                  </g>
+                </g>
+                <g id="nocturnalGroup" visibility="hidden"/>
+                <g id="highlightGroup" fill="none" stroke="none" stroke-width="1">
+                  <circle id="capricorn_highlight" cx="0" cy="0" r="0" />
+                  <circle id="equator_highlight" cx="0" cy="0" r="0" />
+                  <circle id="cancer_highlight" cx="0" cy="0" r="0" />
+                  <g id = "regiomontanus_group" />
+                </g> <!--/highlightGroup-->
+              </g> <!--/mater_group-->
+              <g id="upperlayer" fill="none" stroke="none" transform="matrix(1,0,0,-1,105,105)">
+                <defs>
+                  <radialGradient id = "mercuryGrad"/>
+                  <radialGradient id = "venusGrad"/>
+                  <radialGradient id = "marsGrad"/>
+                  <radialGradient id = "jupiterGrad"/>
+                  <radialGradient id = "saturnGrad"/>
+                </defs> 
+                <g id="reteGroup" transform="rotate(0)">
+                  <g id = "alchabitius_group" stroke-width="1"/>
+                  <g id = "retebrassGroup">
+                    <path id = "capella" d = ""/>
+                    <path id = "retePath" d = ""/>
+                    <g id = "reteMarks"/>
+                    <g id = "starnames_textgroup"/>
+                    <g id = "starpointer_group" transform="rotate(-270)" fill-rule="evenodd">
+                    </g>
+                  </g>
+                  <g id = "eclipticGroup">
+                    <path id = "ecliptic" d = ""/>
+                    <g id = "eclipticMarks"/>
+                  </g>
+                </g> <!--/reteGroup-->
+                <g id = "ruleGroup"/>
+                <g id = "planetsGroup">    
+                  <g id = "saturnGroup">
+                    <circle id = "saturnplanet" cx = "0" cy = "0" r = "0" fill = "url(#saturnGrad)"/>
+                    <text id = "saturntext" x="0" y="0">♄</text>
+                  </g>
+                  <g id = "jupiterGroup">
+                    <circle id = "jupiterplanet" cx = "0" cy = "0" r = "0" fill = "url(#jupiterGrad)"/>
+                    <text id = "jupitertext" x="0" y="0">♃</text>
+                  </g>
+                  <g id = "marsGroup">
+                    <circle id = "marsplanet" cx = "0" cy = "0" r = "0" fill = "url(#marsGrad)"/>
+                    <text id = "marstext" x="0" y="0">♂</text>
+                  </g>
+                  <g id = "sunGroup"/>
+                  <g id = "venusGroup">
+                    <circle id = "venusplanet" cx = "0" cy = "0" r = "0" fill = "url(#venusGrad)"/>
+                    <text id = "venustext" x="0" y="0">♀</text>
+                  </g>
+                  <g id = "mercuryGroup">
+                    <circle id = "mercuryplanet" cx = "0" cy = "0" r = "0" fill = "url(#mercuryGrad)"/>
+                    <text id = "mercurytext" x="0" y="0">☿</text>
+                  </g>
+                  <g id = "moonGroup"/>
+                </g> <!--/planetsGroup-->              
+              </g> <!--/upperlayer-->   
+            </svg> 
+          </div> <!--/astroblock-->
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Control block -->
+<!------------------------------------------------------------------------------------------------>  
+          <div class="ui-block-b">
+            <div id="controlblock">
+              <label for="latitudeSlider" class="latSlider" style="text-align:left; font-size:80%;">Latitude (&#176;N)</label>
+              <input type="range" name="latitudeSlider" id="latitudeSlider" class="latSlider" style="font-size:80%;" min="0" max="90" value="40">
+
+              <div class="ui-grid-d" style = "font-size:80%;">
+                <div class="ui-block-a"><p>Year</p></div>
+                <div class="ui-block-b"><p>Month</p></div>
+                <div class="ui-block-c"><p>Day</p></div>
+                <div class="ui-block-d"><p>Hour</p></div>  
+                <div class="ui-block-e"><p>Minutes</p></div>  
+              </div>
+
+               <svg id="svg_wheels" class="svgx" width="100%" viewBox ="0 0 90 30">
+                <defs>
+                  <linearGradient id="silver"/>
+                </defs>
+                <g transform="matrix(1,0,0,-1,45,15)">
+                  <g id="wheelgroup" stroke="none">
+                    <rect id="yearwheel" x="0" y="0" width="0" height="0"/>
+                    <rect id="monthwheel" x="0" y="0" width="0" height="0"/>
+                    <rect id="daywheel" x="0" y="0" width="0" height="0" />
+                    <rect id="hourwheel" x="0" y="0" width="0" height="0"/>
+                    <rect id="minutewheel" x="0" y="0" width="0" height="0"/>
+                  </g>
+                  <g id="wheel_textgroup" transform="matrix(1,0,0,-1,0,0)" font-size="5" font-family="monospace" stroke="none" text-anchor="middle">
+                    <g id="centuryblock_group"/>
+                    <g id="monthwheel_textgroup" transform="translate(0,1.5)"/>
+                    <g id="daywheel_textgroup_365" transform="translate(0,1.5)" visibility="visible"/>
+                    <g id="daywheel_textgroup_366" transform="translate(0,1.5)" visibility="hidden"/>
+                    <g id="daywheel_textgroup_355" transform="translate(0,1.5)" visibility="hidden"/>
+                    <g id="hourwheel_textgroup" transform="translate(0,1.5)"/>
+                    <g id="minutewheel_textgroup" transform="translate(0,1.5)"/>
+                  </g>
+                  <g id="wheelbox" stroke="none" fill="rgba(0,0,0,0)">
+                    <rect id="yearbox" x="0" y="0" width="0" height="0"/>
+                    <rect id="monthbox" x="0" y="0" width="0" height="0"/>
+                    <rect id="daybox" x="0" y="0" width="0" height="0" />
+                    <rect id="hourbox" x="0" y="0" width="0" height="0"/>
+                    <rect id="minutebox" x="0" y="0" width="0" height="0"/>
+                  </g>
+                  <rect id ="topshield" x="-50" y="0" width="100" height="50" fill="white"/>
+                  <rect id ="bottomshield" x="-50" y="0" width="100" height="50" fill="white" transform="matrix(1,0,0,-1,0,0)"/>
+                </g>
+              </svg>
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Date/Time values -->
+<!------------------------------------------------------------------------------------------------> 
+              <div style="text-align:center;">
+                <div id="datetime_div" class="timetable" style="display: inline-block;">
+                  <p><span id="dayname_span"></span><span>,</span>
+                    <span id="monthname_span"></span>
+                    <span id="daynum_span"></span><span>,</span>
+                    <span id="yearspan"></span></p>
+                  <p><span id="hourspan"></span><span>:</span><span id="minutesspan"></span>
+                    <span id="ampm_span"></span>
+                    <span>(UTC</span><span id="utcoffset_sign"></span><span id="utcoffset_span"></span><span>)</span></p>
+                  <p><span>Julian Date: </span><span id="juliandate_span"></span></p>
+                </div>
+              </div>
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Button Panel -->
+<!------------------------------------------------------------------------------------------------>  
+              <div>
+                <svg id="svg_buttons" width="100%" viewBox ="0 0 100 16">
+                  <defs>
+                    <radialGradient id="buttonglow"/>
+                  </defs>
+                  <g id="buttonpanel_group" transform="matrix(1,0,0,-1,50,8)">
+                    <g id="now_button_group" class="panel_button"/>
+                    <g id="stop_button_group" class="panel_button"/>
+                    <g id="ff_button_group" class="panel_button"/>
+                    <g id="rr_button_group" class="panel_button"/>
+                  </g> 
+                </svg>
+                <p id="speedpar" class="timetable"></p>
+              </div>
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Settings Button -->
+<!------------------------------------------------------------------------------------------------>  
+              <div data-role="collapsible-set" data-iconpos="false" style="max-width:350px; margin:auto;">
+                <div data-role="collapsible" id="settings_button">
+                  <h3><p class="menutitle">ENTER A DATE AND TIME</p></h3>
+                  <!-- year select -->
+                  <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                      <div class="ui-field-contain" style="margin:0;">
+                        <input type="number" name="year_numberinput" id="year_numberinput" value="0">
+                      </div>
+                    </div>
+                    <!-- bc/ce radio buttons -->
+                    <div class="ui-block-b">
+                      <div class="ui-field-contain" style="margin:0;">
+                        <svg id="svg_radio1" class="svgx" width="100%" viewBox="0 0 36 10"/>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-b-->
+                  </div> <!--/grid-a-->
+                  <hr>
+
+                  <div class="ui-grid-a">
+                    <!-- month select -->
+                    <div class="ui-block-a">
+                      <div class="ui-field-contain" style="margin:0;">
+                          <select name="month_select" id="month_select"></select>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-a-->
+                    <!-- day select -->
+                    <div class="ui-block-b">
+                      <div class="ui-field-contain" style="margin:0;">
+                          <select name="day_select" id="day_select"></select>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-b-->
+                  </div> <!--/grid-a-->
+                  <hr>
+
+                  <div class="ui-grid-a">
+                    <!-- hour select -->
+                    <div class="ui-block-a">
+                      <div class="ui-field-contain" style="margin:0;">
+                          <select name="hour_select" id="hour_select"></select>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-a-->
+                    <!-- minute select -->
+                    <div class="ui-block-b">
+                      <div class="ui-field-contain" style="margin:0;">
+                          <select name="minute_select" id="minute_select"></select>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-b-->
+                  </div> <!--/grid-a-->
+                  <hr>
+
+                  <div data-role="fieldcontain">
+                    <p class = "listtext1">Number of hours offset from Universal Time (Greenwich Mean Time)</p>
+                    <input type="range" name="timeZoneSlider" id="timeZoneSlider" value="0" min="-12" max="12" step="1" />
+                    <p class = "listtext1">Approximate Longitude: <span id="lonspan"></span></p>
+                  </div>
+                  <hr>
+
+                  <!-- DST select -->
+                  <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                      <div class="ui-field-contain">
+                        <p class="listtext1">Daylight Saving Time:<span id="dst_radiospan" style="display:none">0</span></p>
+                      </div>
+                    </div>
+                    <!-- dst radio buttons -->
+                    <div class="ui-block-b">
+                      <div class="ui-field-contain" style="margin:0;">
+                        <svg id="svg_radio2" class="svgx" width="100%" viewBox="0 0 36 10"/>
+                      </div> <!--/field-contain-->
+                    </div> <!--/block-b-->
+                  </div> <!--/grid-a-->
+                  <hr>
+
+                  <fieldset class="ui-grid-a">
+                      <div class="ui-block-a"><input type="button" value="Enter" id="settings_enter" data-icon="check"></div>
+                      <div class="ui-block-b"><input type="button" value="Cancel" id="settings_cancel" data-icon="delete"></div>
+                  </fieldset>
+                
+                </div> <!--explore-title-div-->
+             
+              </div> <!--explore-->
+              
+<!------------------------------------------------------------------------------------------------>
+<!-- Close Divs -->
+<!------------------------------------------------------------------------------------------------>  
+            </div><!--/controlblock-->
+          </div> <!--/ui-block-b-->
+        </div> <!--/ui-grid-a-->
+
+<!------------------------------------------------------------------------------------------------>
+<!-- Ephemeris table -->
+<!------------------------------------------------------------------------------------------------>   
+        <!-- <div id="ephemerisDiv"> -->
+          <table id="ephemerisTable">
+            <!-- <tr>
+              <td id="col0" colspan="2" style="text-align:center;"></td>
+              <td id="col1" colspan="2" style="text-align:center; font-weight:bold;">λ</td>
+              <td id="col2" style="width:4em; text-align:center; font-weight:bold;">β</td>
+              <td id="col3" style="width:4em; text-align:center; font-weight:bold;">RA</td>
+              <td id="col4" style="width:4em; text-align:center; font-weight:bold;">Dec</td>
+              <td id="col5" style="width:4em; text-align:center; font-weight:bold;">Az</td>
+              <td id="col6" style="width:4em; text-align:center; font-weight:bold;">El</td>
+              <td id="col7" colspan="2" style="text-align:center; font-weight:bold;">House</td>
+            </tr> -->
+            <!-- <tr id="saturnRow"> -->
+              <!-- <td id="saturnName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Saturn</td> -->
+              <!-- <td id="saturnSign" class="graycell" style="text-align:center;"></td> -->
+              <td id="saturnLambdaSign" class="zsign_eph"></td>
+              <td id="saturnLambda" style="padding-left:0em;"></td>
+              <td id="saturnBeta" class="graycell"></td>
+              <td id="saturnAlpha"></td>
+              <td id="saturnDelta" class="graycell"></td>
+              <td id="saturnAZ"></td>
+              <td id="saturnAL" class="graycell"></td>
+              <td id="saturnHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="saturnHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr> -->
+            <!-- <tr id="jupiterRow"> -->
+              <!-- <td id="jupiterName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Jupiter</td> -->
+              <!-- <td id="jupiterSign" class="graycell"></td> -->
+              <td id="jupiterLambdaSign" class="zsign_eph"></td>
+              <td id="jupiterLambda" style="padding-left:0em;"></td>
+              <td id="jupiterBeta" class="graycell"></td>
+              <td id="jupiterAlpha"></td>
+              <td id="jupiterDelta" class="graycell"></td>
+              <td id="jupiterAZ"></td>
+              <td id="jupiterAL" class="graycell"></td>
+              <td id="jupiterHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="jupiterHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr> -->
+            <!-- <tr id="marsRow"> -->
+              <!-- <td id="marsName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Mars</td> -->
+              <!-- <td id="marsSign" class="graycell"></td> -->
+              <td id="marsLambdaSign" class="zsign_eph"></td>
+              <td id="marsLambda" style="padding-left:0em;"></td>
+              <td id="marsBeta" class="graycell"></td>
+              <td id="marsAlpha"></td>
+              <td id="marsDelta" class="graycell"></td>
+              <td id="marsAZ"></td>
+              <td id="marsAL" class="graycell"></td>
+              <td id="marsHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="marsHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr>
+            <tr> -->
+              <!-- <td id="sunName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Sun</td> -->
+              <!-- <td id="sunSign" class="graycell"></td> -->
+              <td id="sunLambdaSign" class="zsign_eph"></td>
+              <td id="sunLambda" style="padding-left:0em;"></td>
+              <td id="sunBeta" class="graycell"></td>
+              <td id="sunAlpha"></td>
+              <td id="sunDelta" class="graycell"></td>
+              <td id="sunAZ"></td>
+              <td id="sunAL" class="graycell"></td>
+              <td id="sunHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="sunHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr> -->
+            <!-- <tr id="venusRow"> -->
+              <!-- <td id="venusName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Venus</td> -->
+              <!-- <td id="venusSign" class="graycell"></td> -->
+              <td id="venusLambdaSign" class="zsign_eph"></td>
+              <td id="venusLambda" style="padding-left:0em;"></td>
+              <td id="venusBeta" class="graycell"></td>
+              <td id="venusAlpha"></td>
+              <td id="venusDelta" class="graycell"></td>
+              <td id="venusAZ"></td>
+              <td id="venusAL" class="graycell"></td>
+              <td id="venusHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="venusHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr>
+            <tr id="mercuryRow"> -->
+              <!-- <td id="mercuryName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Mercury</td> -->
+              <!-- <td id="mercurySign" class="graycell"></td> -->
+              <td id="mercuryLambdaSign" class="zsign_eph"></td>
+              <td id="mercuryLambda" style="padding-left:0em;"></td>
+              <td id="mercuryBeta" class="graycell"></td>
+              <td id="mercuryAlpha"></td>
+              <td id="mercuryDelta" class="graycell"></td>
+              <td id="mercuryAZ"></td>
+              <td id="mercuryAL" class="graycell"></td>
+              <td id="mercuryHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="mercuryHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr>      
+            <tr id="moonRow"> -->
+              <!-- <td id="moonName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Moon</td> -->
+              <!-- <td id="moonSign" class="graycell"></td> -->
+              <td id="moonLambdaSign" class="zsign_eph"></td>
+              <td id="moonLambda" style="padding-left:0em;"></td>
+              <td id="moonBeta" class="graycell"></td>
+              <td id="moonAlpha"></td>
+              <td id="moonDelta" class="graycell"></td>
+              <td id="moonAZ"></td>
+              <td id="moonAL" class="graycell"></td>
+              <td id="moonHouse" class="housedigit" style="text-align:center;"></td>
+              <td id="moonHouseVal" style="padding-left:0em;"></td>
+            <!-- </tr>
+            <tr id="ascendantRow"> -->
+              <!-- <td id="ascendantName" class="graycell" style="text-align:left; font-weight:bold; padding-right:0em;">Ascendant</td> -->
+              <!-- <td id="ascendantSign" class="graycell"></td> -->
+              <td id="ascendantLambdaSign" class="zsign_eph"></td>
+              <td id="ascendantLambda" style="padding-left:0em;"></td>
+              <td id="ascendantBeta" class="graycell"></td>
+              <td id="ascendantAlpha"></td>
+              <td id="ascendantDelta" class="graycell"></td>
+              <td id="ascendantAZ"></td>
+              <td id="ascendantAL" class="graycell"></td>
+              <td id="ascendantHouse" class="housedigit" style="text-align:center; width:1em;"></td>
+              <td id="ascendantHouseVal" style="padding-left:0em; width:3.7em;"></td>
+            <!-- </tr>   -->
+          </table>
+        <!-- </div> /ephemerisDiv-->  
+
+<p> <span id="svg_toparrow1" />
+         
+  <span id="svg_toparrow2"/>
+
+  <span id="svg_toparrow3"/>
+
+  <span id="svg_toparrow4" />
+
+  <span id="svg_toparrow5"/> </p>
+           
+         
+
+        <div class="ui-grid-d diagnostics">
+          <hr>
+          <div class="ui-block-a"><p style="font-weight:bold; text-align:center; margin-bottom:1em;">Year</p>
+            <p><span>value: </span><span id="yearwheel_val">0</span></p>
+            <p><span>position: </span><span id="yearwheel_y">1.500</span></p>
+            <p><span>dy: </span><span id="yearwheel_dy"></span></p>
+            <p><span>century: </span><span id="century_val"></span></p>
+          </div>
+          <div class="ui-block-b"><p style="font-weight:bold; text-align:center; margin-bottom:1em;">Month</p>
+            <p><span>value: </span><span id = "monthwheel_val">0</span></p>
+            <p><span>position: </span><span id = "monthwheel_y">1.500</span></p>
+            <p><span>dy: </span><span id = "monthwheel_dy"></span></p>
+          </div>
+          <div class="ui-block-c"><p style="font-weight:bold; text-align:center; margin-bottom:1em;">Day</p>
+            <p><span>value: </span><span id = "daywheel_val">0</span><span> of </span><span id = "daysinyear">0</span></p>
+            <p><span>position: </span><span id = "daywheel_y">1.500</span></p>
+            <p><span>dy: </span><span id = "daywheel_dy"></span></p>
+          </div>
+          <div class="ui-block-d"><p style="font-weight:bold; text-align:center; margin-bottom:1em;">Hour</p>
+            <p><span>value: </span><span id = "hourwheel_val">0</span></p>
+            <p><span>position: </span><span id = "hourwheel_y">1.500</span></p>
+            <p><span>dy: </span><span id = "hourwheel_dy"></span></p>
+          </div>  
+          <div class="ui-block-e"><p style="font-weight:bold; text-align:center; margin-bottom:1em;">Minutes</p>
+            <p><span>value: </span><span id = "minutewheel_val">0</span></p>
+            <p><span>position: </span><span id = "minutewheel_y">1.500</span></p>
+            <p><span>dy: </span><span id = "minutewheel_dy"></span></p>
+          </div>
+        </div> 
+
+        <div class="ui-grid-d diagnostics">
+          <hr>
+          <div class="ui-block-a">
+            <p><span>lat: </span><span id="latitude">40</span></p>
+            <p><span>utc year: </span><span id="utc_year"></span></p>
+            <p><span>local year: </span><span id="local_year"></span></p>
+            <p><span>JD: </span><span id="julian_day"></span></p>
+            <p><span>GMST: </span><span id="gmst_span"></span></p>
+          </div>
+          <div class="ui-block-b">
+            <p><span>lon: </span><span id="longitude"></span></p>
+            <p><span>utc month: </span><span id="utc_month"></span></p>
+            <p><span>local month: </span><span id="local_month"></span></p>
+            <p><span>JD local: </span><span id="julian_day_local"></span></p>
+            <p><span>LMST: </span><span id="lmst_span"></span></p>
+          </div>
+          <div class="ui-block-c">
+            <p><span>leap year: </span><span id="leapyearval"></span></p>
+            <p><span>utc day: </span><span id="utc_day"></span></p>
+            <p><span>local day: </span><span id="local_day"></span></p>
+            <p><span>leapval buffer: </span><span id="oldLeap_buffer"></span></p>
+            <p><span>asc: </span><span id="asc_span"></span></p>
+            <p> </p>
+          </div>
+          <div class="ui-block-d">
+            <p><span>daylight saving: </span><span id="daylightsaving"></span></p>
+            <p><span>utc hour: </span><span id="utc_hour"></span></p>
+            <p><span>local hour: </span><span id="local_hour"></span></p>
+            <p><span>qq: </span><span id="qq"></span></p>
+            <p><span>mc: </span><span id="mc_span"></span></p>
+          </div>  
+          <div class="ui-block-e">
+            <p><span>UTC offset: </span><span id="utc_offset"></span></p>
+            <p><span>utc minutes: </span><span id="utc_minutes"></span></p>
+            <p><span>local minutes: </span><span id="local_minutes"></span></p>
+            <p><span>local seconds: </span><span id="local_seconds"></span></p>
+          </div>
+        </div>
+        <div class="ui-grid-d diagnostics">
+          <hr>
+          <div class="ui-block-a">
+            <p><span>run status: </span><span id="run_status">run</span></p>
+          </div>
+          <div class="ui-block-b">
+            <p><span>ff speed: </span><span id="ff_speed">0</span></p>
+          </div>
+          <div class="ui-block-c">
+            <p><span>rr speed: </span><span id="rr_speed">0</span></p>
+          </div>
+          <div class="ui-block-d">
+            <p><span>sky flag: </span><span id="sky_flag">1</span></p></p>
+          </div>  
+          <div class="ui-block-e">
+            <p> </p>
+          </div>
+        </div>
+        <div class="ui-grid-d diagnostics">
+          <hr>
+          <div class="ui-block-a">
+            <p><span>rete initial rotation: </span><span id="reterot0"></span></p>
+            <p><span>rete new rotation: </span><span id="reterot1"></span></p>
+          </div>
+          <div class="ui-block-b">
+            <p><span>cursor angle0: </span><span id="cursor_phi0"></span></p>
+            <p><span>delta theta: </span><span id="dtheta_span"></span></p>
+          </div>
+          <div class="ui-block-c">
+            <p><span>cursor angle1: </span><span id="cursor_phi1"></span></p>
+            <p><span>jd_local buffer: </span><span id="jdlocalbuffer"></span></p>
+          </div>
+          <div class="ui-block-d">
+            <p><span>dphi: </span><span id="dphi_span">0</span></p>
+            <p><span>sunpin: </span><span id="sunpin_span">1</span></p>
+          </div>
+          <div class="ui-block-e">
+            <p><span>fringes: </span><span id="fringe_counter">0</span></p>
+          </div>  
+        </div> 
+        <div class="ui-grid-d diagnostics">
+          <br>
+          <br>
+        </div> 
+      </div> <!--main-->  
+      <div data-role="footer" style="text-align:center; display:none;"></div>
+    </div> <!--/wrapper-->
+  </div> <!--/page-->
+</body>
+</html>
+

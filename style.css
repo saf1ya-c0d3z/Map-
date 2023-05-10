@@ -1,0 +1,375 @@
+p 
+{ 
+    color: #222; 
+    font-family: "Fixed", monospace;
+    font-weight: normal;  
+    text-align: center; 
+    text-indent: 0; 
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: none;
+}
+
+a
+{
+  text-decoration: none;
+}
+
+#page
+{
+  background-color: rgb(249,249,249);
+}
+
+#wrapper
+{
+  background-color: white;
+  max-width: 1100px;
+  min-height: 1100px;
+  margin: auto;
+}
+
+.banner
+{
+  background-color:rgb(230,242,255);
+  border: none;
+  padding: .5em;
+}
+/* add display none */
+
+#bannertop {
+  display: none;
+}
+
+#navbuttons {
+  display:none;
+}
+
+.sectionbanner
+{
+  background-color:rgb(230,242,255);
+  clear:both;
+  margin-top: 1em;
+  display: block;
+}
+
+.bannertext
+{
+  /* font-family: Georgia, serif;
+  color:rgb(95,85,75);
+  font-size:180%;
+  font-style:italic;
+  text-shadow:none;
+  text-align:left;
+  letter-spacing: 1px;
+  padding: 5px;
+  padding-left: .5em;
+  display: block; */
+}
+
+.toparrow
+{
+display: none;
+}
+
+.lorem p
+{
+  font-family: "Book Antiqua", Palatino, serif;
+  color:rgb(95,85,75);
+  text-shadow:none;
+  text-align:justify;
+  letter-spacing: 1.2px; 
+  padding: 1.5em;
+  padding-right: 2em;
+  display: block;
+}
+
+.ui-listview > li p
+{
+  font-size:100%;
+  margin: 0;
+  font-family: "Book Antiqua", Palatino, serif;
+  color:rgb(95,85,75);
+  text-shadow:none;
+  text-align:left;
+  letter-spacing: 1.2px;
+  overflow: visible; 
+  white-space: normal;
+}
+
+
+.ui-page-theme-a .ui-listview .ui-btn
+{
+  background-color: rgb(248,248,248);
+  background-color: white;
+  padding :0;
+}
+
+.ui-page-theme-a .ui-listview a.ui-btn:hover 
+{
+  background-color: rgb(240,240,240);
+}
+
+.iotc1
+{
+  color:rgb(203,44,13);
+  font-size:200%; 
+  letter-spacing: .2em;
+  vertical-align:middle;
+  text-align:left;
+}
+
+.iotc2
+{
+  color:rgb(203,44,13);
+  font-size:85%; 
+  vertical-align:middle;
+  letter-spacing: .2em;
+  margin-left:-.15em;
+  text-align:left;
+}
+
+.trithemius
+{
+  font-family: "IM Fell English", Georgia, serif;
+  color:rgb(65,55,45);
+  font-size:150%; 
+  letter-spacing: .2em;
+  vertical-align:middle;
+  text-align:left;
+}
+
+.svgx
+{
+ text-shadow:none; 
+}
+
+#controlblock
+{
+ margin:auto;
+ margin-top: 1em;
+ max-width: 350px;
+ padding: 0px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.centuryblock_visible {
+  visibility: visible;
+}
+
+.centuryblock_hidden {
+  visibility: hidden;
+}
+
+.wheelval_active {
+  fill: black;
+}
+
+.wheelval_inactive {
+  fill: rgba(30,30,30,.3);
+}
+
+.button_active_rim {
+  fill: white;
+  stroke: rgb(125,120,115);
+  stroke-width: .2;
+}
+
+.button_inactive_rim {
+  fill: white;
+  stroke: rgb(200,200,200);
+  stroke-width: .2;
+}
+
+.button_active_background {
+  fill: rgb(125,120,115);
+  stroke: none;
+}
+
+.button_inactive_background {
+  fill: rgb(220,220,220);
+  stroke: none;
+}
+
+.timetable {
+  font-family: "Fixed", monospace;
+  font-size: 80%;
+  text-align: center;
+}
+
+.diagnostics {
+  display: none;
+}
+
+.diagnostics p {
+  text-align: left;
+  font-size:80%;
+}
+
+.latSlider
+{
+  color: #222; 
+  font-family: "Fixed", monospace; 
+  text-align:center;
+  font-weight: normal; 
+  text-shadow: none;
+}
+
+.menutitle {
+  font-family: Georgia, serif;
+  color: rgb(95,85,75);
+  font-size: 100%;
+  letter-spacing:2px;
+}
+
+.listtext1 {
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    white-space: normal;
+    text-align: center;
+    text-shadow: none;
+}
+
+input[type="number"]
+{
+    font-weight:bold;
+    text-align: center;
+}
+
+#ephemerisDiv {
+  margin-left: .2em;
+  margin-right: .2em;
+  margin-bottom: 1.5em;
+}
+
+#ephemerisTable {
+  display: table;
+  margin: auto;
+  border-collapse:collapse;
+}
+
+#ephemerisTable td {
+  border: none;
+  color: #222;
+  font-size: 16px; 
+  text-shadow: none;
+  font-family: "Fixed", monospace;
+  white-space: pre;
+  text-align: right;
+  padding-left: .7em;
+  padding-right: .7em;
+}
+
+.graycell {
+  background-color: rgb(244,244,244);
+}
+
+/* add display none */
+.zsign_eph {
+  display: none;
+}
+
+
+/* Toggle Switch Stylings */
+
+html .ui-bar-b .ui-btn {
+  background-color: #f6f6f6 !important;
+  border-color: #ddd !important;
+  box-shadow: none !important;
+}
+
+html .ui-bar-b .ui-btn:hover {
+  background-color: #ededed !important;
+  border-color: #ddd !important;
+  box-shadow: none !important;
+  text-shadow: none !important;  
+  color:inherit;
+}
+
+.ui-bar-b {
+  text-shadow: none !important;  
+}
+
+html body .ui-flipswitch.ui-bar-b.ui-flipswitch-active {
+  background-color: black;
+  border-color: #1f1f1f;
+}
+
+.component-divider {
+  border: none;
+  color: none;
+  width: 98%;
+  height: 1px;
+  background-color: rgb(180,180,180);
+}
+
+.component-divider-light {
+  border: none;
+  border-top: 1px dotted;
+  color: rgb(200,200,200);
+  width: 98%;
+  height: 1px;
+  background-color: none;
+}
+
+#instrument_only {
+  font-family: Georgia, serif;
+  color: rgb(95,85,75);
+  font-size: 100%;
+  letter-spacing:2px;
+  font-weight: normal;
+  max-width: 350px;
+  margin: auto;
+  margin-top:1em;
+}
+
+#toggle_reset {
+  font-family: Georgia, serif;
+  color: rgb(95,85,75);
+  font-size: 100%;
+  letter-spacing:2px;
+  font-weight: normal;
+  max-width: 350px;
+  margin: auto;
+  margin-top:1em;
+}
+
+#toggle_all {
+  font-family: Georgia, serif;
+  color: rgb(95,85,75);
+  font-size: 100%;
+  letter-spacing:2px;
+  font-weight: normal;
+  max-width: 350px;
+  margin: auto;
+  margin-top:1em;
+}
+
+
+.azimuthtoggle {
+  stroke: rgb(50,200,200);
+  stroke-width: 1;
+}
+
+.elevationtoggle {
+  stroke: rgb(255,140,0);
+  stroke-width: 1;
+}
+
+.housetoggle {
+  stroke: rgb(150,0,200);
+  stroke-width: 1;
+}
+
+.housetexttoggle {
+  fill: rgb(180,0,250);
+  font-weight: bold
+}
+
