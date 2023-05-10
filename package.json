@@ -1,0 +1,19 @@
+{
+  "name": "map-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "astronomy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saf1ya-c0d3z/Map-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saf1ya-c0d3z/Map-/issues"
+  },
+  "homepage": "https://github.com/saf1ya-c0d3z/Map-#readme"
+}
