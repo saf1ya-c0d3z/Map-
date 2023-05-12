@@ -44,6 +44,7 @@ a
   display:none;
 }
 
+
 .sectionbanner
 {
   background-color:rgb(230,242,255);
@@ -66,10 +67,14 @@ a
   display: block; */
 }
 
-.toparrow
+/* .toparrow 
 {
-display: none;
-}
+  display: none;
+  position: relative;
+  bottom:700px;
+} */
+
+/*  */
 
 .lorem p
 {
@@ -250,9 +255,11 @@ input[type="number"]
 }
 
 #ephemerisTable {
-  display: table;
+  display: none;
   margin: auto;
   border-collapse:collapse;
+  position: relative;
+  /* bottom:-900px; */
 }
 
 #ephemerisTable td {
@@ -265,6 +272,8 @@ input[type="number"]
   text-align: right;
   padding-left: .7em;
   padding-right: .7em;
+  position: relative;
+  /* bottom:-900px; */
 }
 
 .graycell {
@@ -273,7 +282,9 @@ input[type="number"]
 
 /* add display none */
 .zsign_eph {
-  display: none;
+ display: none;
+  position: relative;
+  bottom:700px;
 }
 
 
@@ -373,3 +384,13 @@ html body .ui-flipswitch.ui-bar-b.ui-flipswitch-active {
   font-weight: bold
 }
 
+
+
+.ui-block-a, .ui-block-b, .ui-block-c, .ui-block-d, .ui-block-e {
+  display: flex;
+  /* flex-wrap: wrap; */
+  position: relative;
+  float: none !important;
+  left: 275px
+
+}

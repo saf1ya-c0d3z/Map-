@@ -1,6 +1,7 @@
 //-------------------------------------
 //----- Define Planet Constructor -----
 //-------------------------------------
+
 function Planet(name, index){
   this.name = name;
   this.index = index;
